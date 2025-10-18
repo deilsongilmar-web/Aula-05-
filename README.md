@@ -1,11 +1,3 @@
-Claro\! Para adaptar este README para o GitHub, faremos algumas alterações:
-
-1.  **Remover links de imagens brutas:** Substituiremos os links de imagens genéricos (que podem quebrar ou não carregar bem) por um aviso de que uma imagem ou GIF deve ser inserida, já que não podemos gerar ou hospedar a imagem real.
-2.  **Adicionar Títulos Mais Claros:** Ajustar a estrutura de títulos para navegação.
-3.  **Reforçar o Tópico:** Deixar claro que se trata de uma **Single Page Application (SPA) em Vanilla JS**.
-
-Aqui está o `README.md` final, pronto para o GitHub:
-
 # ⚡ Portal de Clientes - Energia (Vanilla JS e Tailwind CSS)
 
 Este é um projeto de um formulário de login/portal de clientes moderno e altamente funcional, desenvolvido como uma **Single Page Application (SPA)** usando apenas **HTML5, JavaScript puro (Vanilla JS)** e **Tailwind CSS (via CDN)**. O objetivo é demonstrar como criar uma interface de usuário reativa com foco em internacionalização e acessibilidade sem a necessidade de grandes frameworks.
