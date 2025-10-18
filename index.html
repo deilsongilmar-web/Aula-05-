@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Clientes | Energia</title>
+    <!-- Carregamento do Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Define a fonte Inter como padrão */
+        :root {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-green-50 font-inter">
+
+    <!-- Container Principal (Injeção de JS para o conteúdo) -->
+    <div id="app" class="min-h-screen flex items-center justify-center p-4">
+        <!-- Conteúdo será injetado aqui pelo JavaScript -->
+    </div>
+
+    <script>
+        // Ícones SVG para uso no HTML (substituindo Lucide React)
+        const Icons = {
+            Zap: (className = "text-blue-600", size = 28) => `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="${className}"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+            Sun: (className = "text-green-600", size = 28) => `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="${className}"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M4.93 19.07l1.41-1.41"/><path d="M17.66 6.34l1.41-1.41"/></svg>`,
+            Globe: (className = "text-gray-500", size = 18) => `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="${className}"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>`,
+            Hand: (className = "text-purple-600", size = 18) => `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="${className}"><path d="M14 19l4-4 2-3V5c0-1.1-.9-2-2-2h-3.9a2 2 0 0 0-1.4.5L7 8.5V18a2 2 0 0 1-2 2H3c-1.1 0-2-.9-2-2v-5a2 2 0 0 1 2-2h2"/><path d="M17 15l-4-4"/></svg>`,
+            Volume2: (className = "text-white", size = 18) => `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="${className}"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>`,
+            Eye: (className = "text-gray-500", size = 20) => `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="${className}"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>`,
+            EyeOff: (className = "text-gray-500", size = 20) => `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="${className}"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-10-7-10-7a10.07 10.07 0 0 1 2.92-5.46M6.4 6.4C8.42 5.6 10.6 5 12 5c7 0 10 7 10 7a10.07 10.07 0 0 1-2.92 5.46M9 9l6 6M2 2l20 20"/></svg>`,
+        };
+
+        // --- Estado Global e Lógica de Internacionalização (i18n) ---
+        let state = {
+            email: '',
+            senha: '',
+            mostrarSenha: false,
+            idioma: 'pt',
+            librasAtivo: false,
+            tipoEnergia: 'eletrica',
+        };
+
+        const traducoes = {
+            pt: {
+                titulo: 'Portal de Clientes',
+                subtitulo: 'Energia Elétrica e Solar',
+                email: 'E-mail',
+                senha: 'Senha',
+                entrar: 'Entrar',
+                esqueceuSenha: 'Esqueceu a senha?',
+                novoCliente: 'Novo cliente?',
+                registrar: 'Registre-se aqui',
+                tipoEletrica: 'Energia Elétrica',
+                tipoSolar: 'Energia Solar',
+                selecioneTipo: 'Selecione o tipo de cliente:',
+                linguagem: 'Idioma',
+                acessibilidade: 'Acessibilidade',
+                libras: 'Ativar Libras'
+            },
+            en: {
+                titulo: 'Customer Portal',
+                subtitulo: 'Electric and Solar Energy',
+                email: 'E-mail',
+                senha: 'Password',
+                entrar: 'Sign In',
+                esqueceuSenha: 'Forgot password?',
+                novoCliente: 'New customer?',
+                registrar: 'Register here',
+                tipoEletrica: 'Electric Energy',
+                tipoSolar: 'Solar Energy',
+                selecioneTipo: 'Select customer type:',
+                linguagem: 'Language',
+                acessibilidade: 'Accessibility',
+                libras: 'Enable Sign Language'
+            },
+            es: {
+                titulo: 'Portal de Clientes',
+                subtitulo: 'Energía Eléctrica y Solar',
+                email: 'Correo electrónico',
+                senha: 'Contraseña',
+                entrar: 'Iniciar sesión',
+                esqueceuSenha: '¿Olvidó la contraseña?',
+                novoCliente: '¿Nuevo cliente?',
+                registrar: 'Regístrese aquí',
+                tipoEletrica: 'Energía Eléctrica',
+                tipoSolar: 'Energía Solar',
+                seleccioneTipo: 'Seleccione tipo de cliente:',
+                linguagem: 'Idioma',
+                acessibilidade: 'Accesibilidad',
+                libras: 'Habilitar Lenguaje de Signos'
+            }
+        };
+
+        // Utilizando function declaration para evitar problemas de redeclaração em certos ambientes
+        function t() {
+            return traducoes[state.idioma];
+        }
+
+        // Função para atualizar o estado e redesenhar a UI
+        function setState(newState) {
+            state = { ...state, ...newState };
+            render();
+        }
+
+        // --- Event Handlers ---
+        function handleIdiomaChange(event) {
+            setState({ idioma: event.target.value });
+        }
+
+        function toggleLibras() {
+            setState({ librasAtivo: !state.librasAtivo });
+        }
+
+        function handleTypeChange(event) {
+            setState({ tipoEnergia: event.target.value });
+        }
+
+        function toggleMostrarSenha() {
+            setState({ mostrarSenha: !state.mostrarSenha });
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            const message = `Tentativa de Login:\nEmail: ${state.email}\nTipo: ${state.tipoEnergia}\nLibras Ativo: ${state.librasAtivo}`;
+            
+            // Substituindo o alert por uma mensagem no console
+            console.log(message);
+            // Em uma aplicação real, você faria uma requisição POST aqui.
+
+            const submitMessage = document.getElementById('submit-message');
+            submitMessage.textContent = t().entrar + ' realizado com sucesso (ver console para dados).';
+            submitMessage.classList.remove('hidden');
+            setTimeout(() => {
+                submitMessage.classList.add('hidden');
+            }, 3000);
+        }
+
+        // --- Função de Renderização (Re-renderiza o DOM com o estado atual) ---
+        function render() {
+            const currentT = t();
+            const app = document.getElementById('app');
+            
+            // Estrutura principal do HTML
+            app.innerHTML = `
+                <!-- Fundo com elementos decorativos de energia -->
+                <div class="absolute top-0 right-0 opacity-[0.05] pointer-events-none">
+                    ${Icons.Sun("text-yellow-500", 200)}
+                </div>
+                <div class="absolute bottom-0 left-0 opacity-[0.05] pointer-events-none">
+                    ${Icons.Zap("text-blue-500", 200)}
+                </div>
+
+                <div class="w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden relative z-10 border border-gray-100">
+                    
+                    <!-- Header (Cabeçalho) -->
+                    <div class="bg-gradient-to-r from-blue-600 to-green-600 p-8 text-white text-center">
+                        <div class="flex justify-center gap-3 mb-4">
+                            ${Icons.Zap("text-yellow-300 transform rotate-[-30deg]", 36)}
+                            ${Icons.Sun("text-yellow-300", 36)}
+                        </div>
+                        <h1 class="text-3xl font-extrabold mb-2">${currentT.titulo}</h1>
+                        <p class="text-blue-100 text-sm">${currentT.subtitulo}</p>
+                    </div>
+
+                    <!-- Controles de acessibilidade e idioma -->
+                    <div class="bg-gray-50 border-b border-gray-200 p-4">
+                        <div class="flex flex-wrap gap-3 justify-between items-center">
+                            <!-- Seletor de Idioma -->
+                            <div class="flex items-center gap-2">
+                                ${Icons.Globe("text-gray-500", 18)}
+                                <select id="idioma-select" aria-label="${currentT.linguagem}"
+                                    class="text-sm px-3 py-1.5 border border-gray-300 rounded-lg bg-white cursor-pointer shadow-sm focus:ring-4 focus:ring-blue-200/50 focus:border-blue-500">
+                                    <option value="pt" ${state.idioma === 'pt' ? 'selected' : ''}>Português (pt)</option>
+                                    <option value="en" ${state.idioma === 'en' ? 'selected' : ''}>English (en)</option>
+                                    <option value="es" ${state.idioma === 'es' ? 'selected' : ''}>Español (es)</option>
+                                </select>
+                            </div>
+
+                            <!-- Botões de Acessibilidade -->
+                            <div class="flex gap-2">
+                                <button id="libras-toggle" type="button" aria-pressed="${state.librasAtivo}"
+                                    class="px-3 py-1.5 rounded-lg text-sm font-medium flex items-center gap-1 transition duration-200 shadow-sm ${
+                                        state.librasAtivo
+                                            ? 'bg-purple-600 text-white hover:bg-purple-700'
+                                            : 'bg-white text-purple-600 border border-purple-600 hover:bg-purple-50'
+                                    }">
+                                    ${Icons.Hand("", 18)}
+                                    LIBRAS
+                                </button>
+                                <button type="button" aria-label="Ativar leitura de tela"
+                                    class="px-3 py-1.5 rounded-lg text-sm font-medium bg-orange-500 text-white hover:bg-orange-600 transition duration-200 shadow-sm flex items-center gap-1">
+                                    ${Icons.Volume2("text-white", 18)}
+                                    ÁUDIO
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Seleção de tipo de cliente (Elétrica/Solar) -->
+                    <div class="p-6 border-b border-gray-200">
+                        <p class="text-sm font-semibold text-gray-700 mb-3">${currentT.selecioneTipo}</p>
+                        <div class="flex gap-4">
+                            <!-- Opção Elétrica -->
+                            <label class="flex-1 relative cursor-pointer">
+                                <input type="radio" name="energy_type" value="eletrica" 
+                                    class="sr-only" data-type-input="eletrica" ${state.tipoEnergia === 'eletrica' ? 'checked' : ''}/>
+                                <div class="p-4 rounded-xl border-2 text-center transition duration-200 ${
+                                    state.tipoEnergia === 'eletrica'
+                                        ? 'border-blue-600 bg-blue-50 shadow-md'
+                                        : 'border-gray-200 bg-white hover:border-blue-400'
+                                    }">
+                                    ${Icons.Zap(state.tipoEnergia === 'eletrica' ? 'text-blue-600' : 'text-gray-500', 28)}
+                                    <p class="text-sm font-bold ${state.tipoEnergia === 'eletrica' ? 'text-blue-700' : 'text-gray-800'}">${currentT.tipoEletrica}</p>
+                                </div>
+                            </label>
+
+                            <!-- Opção Solar -->
+                            <label class="flex-1 relative cursor-pointer">
+                                <input type="radio" name="energy_type" value="solar" 
+                                    class="sr-only" data-type-input="solar" ${state.tipoEnergia === 'solar' ? 'checked' : ''}/>
+                                <div class="p-4 rounded-xl border-2 text-center transition duration-200 ${
+                                    state.tipoEnergia === 'solar'
+                                        ? 'border-green-600 bg-green-50 shadow-md'
+                                        : 'border-gray-200 bg-white hover:border-green-400'
+                                    }">
+                                    ${Icons.Sun(state.tipoEnergia === 'solar' ? 'text-green-600' : 'text-gray-500', 28)}
+                                    <p class="text-sm font-bold ${state.tipoEnergia === 'solar' ? 'text-green-700' : 'text-gray-800'}">${currentT.tipoSolar}</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Formulário de login -->
+                    <form id="login-form" class="p-6 space-y-5">
+                        <div>
+                            <label for="email-input" class="block text-sm font-semibold text-gray-700 mb-2">
+                                ${currentT.email}
+                            </label>
+                            <input id="email-input" type="email" value="${state.email}" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-200/50 focus:border-blue-500 outline-none transition text-base shadow-sm"
+                                placeholder="seu@email.com" oninput="setState({ email: this.value })" />
+                        </div>
+
+                        <div>
+                            <label for="password-input" class="block text-sm font-semibold text-gray-700 mb-2">
+                                ${currentT.senha}
+                            </label>
+                            <div class="relative">
+                                <input id="password-input" type="${state.mostrarSenha ? 'text' : 'password'}" value="${state.senha}" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-200/50 focus:border-blue-500 outline-none transition text-base shadow-sm"
+                                    placeholder="••••••••" oninput="setState({ senha: this.value })" />
+                                <button type="button" id="toggle-password" aria-label="${state.mostrarSenha ? 'Ocultar senha' : 'Mostrar senha'}"
+                                    class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 transition p-1">
+                                    ${state.mostrarSenha ? Icons.EyeOff() : Icons.Eye()}
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="text-right text-sm pt-1">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium transition duration-150">
+                                ${currentT.esqueceuSenha}
+                            </a>
+                        </div>
+                        
+                        <div id="submit-message" class="hidden text-center bg-green-100 text-green-700 p-3 rounded-lg font-semibold transition-all"></div>
+
+                        <button type="submit"
+                            class="w-full bg-gradient-to-r from-blue-600 to-green-600 text-white font-bold py-3 rounded-xl hover:from-blue-700 hover:to-green-700 shadow-lg hover:shadow-xl transition transform hover:scale-[1.01] text-lg cursor-pointer focus:outline-none focus:ring-4 focus:ring-blue-300/50">
+                            ${currentT.entrar}
+                        </button>
+                    </form>
+
+                    <!-- Footer (Rodapé) -->
+                    <div class="bg-gray-50 px-6 py-5 text-center border-t border-gray-200 rounded-b-2xl">
+                        <p class="text-sm text-gray-600">
+                            ${currentT.novoCliente}
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-extrabold transition duration-150">
+                                ${currentT.registrar}
+                            </a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Indicador de LIBRAS ativo -->
+                ${state.librasAtivo ? `
+                    <div class="fixed bottom-6 left-6 bg-purple-600 text-white px-5 py-2.5 rounded-full flex items-center gap-2 shadow-xl animate-pulse">
+                        ${Icons.Hand("text-white", 20)}
+                        <span class="font-semibold text-sm">LIBRAS ATIVO</span>
+                    </div>
+                ` : ''}
+            `;
+
+            // --- Reatribuir Eventos após a Re-renderização ---
+            
+            // 1. Idioma
+            document.getElementById('idioma-select').addEventListener('change', handleIdiomaChange);
+
+            // 2. Libras
+            document.getElementById('libras-toggle').addEventListener('click', toggleLibras);
+            
+            // 3. Senha
+            document.getElementById('toggle-password').addEventListener('click', toggleMostrarSenha);
+
+            // 4. Tipo de Energia (Radio Buttons)
+            document.querySelectorAll('input[name="energy_type"]').forEach(input => {
+                input.addEventListener('change', handleTypeChange);
+            });
+
+            // 5. Submit do Formulário
+            document.getElementById('login-form').addEventListener('submit', handleSubmit);
+        }
+
+        // Inicia a aplicação
+        window.onload = render;
+    </script>
+</body>
+</html>
