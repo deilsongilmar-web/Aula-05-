@@ -219,8 +219,9 @@ Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) par
 ## 👨‍💼 Autor
 
 **Seu Nome**
-- GitHub: [@seu-usuario](https://github.com/seu-usuario)
-- Email: seu.email@exemplo.com
+- GitHub:https://github.com/deilsongilmar-web)
+- Email:deilsongilmar@gmail.com
+- Fone:(85)9 8561-7285
 
 ## 🙏 Agradecimentos
 
@@ -231,8 +232,8 @@ Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) par
 ## 📞 Suporte
 
 Se encontrar problemas ou tiver sugestões:
-- Abra uma [Issue](https://github.com/seu-usuario/sunpower-login/issues)
-- Envie um email
+- Abra uma [Issue](https://github.com/deilsongilmar-web)
+- Envie um email: deilsongilmar@gmail.com
 - Faça uma discussão no repositório
 
 ## 🔗 Links Úteis
