@@ -112,12 +112,6 @@ body {
     right: -100px;
 }
 
-.solar-icon {
-    width: 100%;
-    max-width: 300px;
-    z-index: 1;
-}
-
 .solar-panel {
     width: 280px;
     height: 280px;
@@ -130,6 +124,7 @@ body {
     padding: 15px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 200, 0, 0.5);
     animation: glow 3s ease-in-out infinite;
+    z-index: 1;
 }
 
 .solar-cell {
