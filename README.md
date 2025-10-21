@@ -8,7 +8,7 @@ Este é um projeto de um formulário de login/portal de clientes moderno e altam
 
 ⚠️ **Insira aqui um GIF ou uma imagem do seu projeto rodando\!**
 
-> *Exemplo de link:* `![Screenshot do Formulário](caminho/para/sua/imagem.png)`
+ `https://github.com/deilsongilmar-web/Aula-05-/issues/1`
 
 -----
 
