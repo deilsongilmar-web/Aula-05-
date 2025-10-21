@@ -1,4 +1,4 @@
-# ⚡ Portal de Clientes - Energia (Vanilla JS e Tailwind CSS)
+# ⚡ Portal de Clientes - Energia 
 
 Este é um projeto de um formulário de login/portal de clientes moderno e altamente funcional, desenvolvido como uma **Single Page Application (SPA)** usando apenas **HTML5, JavaScript puro (Vanilla JS)** e **Tailwind CSS (via CDN)**. O objetivo é demonstrar como criar uma interface de usuário reativa com foco em internacionalização e acessibilidade sem a necessidade de grandes frameworks.
 
