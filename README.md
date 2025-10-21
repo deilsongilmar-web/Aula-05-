@@ -6,7 +6,7 @@ Este é um projeto de um formulário de login/portal de clientes moderno e altam
 
 ## 🖼️ Pré-visualização
 
-⚠️ 
+
 
  ![Image](https://github.com/user-attachments/assets/ecfd3c3a-623e-4d0a-8eaf-654473759627)
 
