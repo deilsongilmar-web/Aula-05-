@@ -69,3 +69,37 @@ Sinta-se à vontade para contribuir com melhorias\! Algumas sugestões:
   * **Acessibilidade (Real):** Integrar um widget de vídeo LIBRAS real ou uma solução de leitura de tela.
   * **Otimização:** Extrair os scripts e estilos em arquivos separados para um ambiente de produção (usando ferramentas de *build* como Vite ou Webpack).
   * **API Connection:** Conectar o `handleSubmit` a uma API real (ex: usando `fetch` para um endpoint de login).
+  * 
+
+
+
+
+
+
+---
+
+
+git clone [https://github.com/deilsongilmar-web/](https://github.com/deilsongilmar-web/).
+
+
+
+## 👨‍💻 Contato
+
+Deilson Gilmar - Desenvolvedor Web & Serviços Elétricos/Energia Solar.
+
+
+* **Meu LinkedIn:** [www.linkedin.com/in/deilson-mendes](www.linkedin.com/in/deilson-mendes)
+
+* **GitHub:** [https://github.com/DeilsonGilmar](https://github.com/DeilsonGilmar)
+
+* **E-mail:** [deilsongilmar@gmail.com](deilsongilmar@gmail.com)
+
+* **Instagram:** [@DL_MENDES_SERVICOS](@DL_MENDES_SERVICOS)
+
+* **Telefone:** [85 98561-7285](85 985617285)
+
+
+
+---
+
+  
