@@ -96,7 +96,7 @@ Deilson Gilmar - Desenvolvedor Web & Serviços Elétricos/Energia Solar.
 
 * **Instagram:** [@DL_MENDES_SERVICOS](@DL_MENDES_SERVICOS)
 
-* **Telefone:** [85 98561-7285](85 985617285)
+* **Telefone:** [8598561-7285](85985617285)
 
 
 
