@@ -79,13 +79,13 @@ Sinta-se à vontade para contribuir com melhorias\! Algumas sugestões:
 ---
 
 
-git clone [https://github.com/deilsongilmar-web/](https://github.com/deilsongilmar-web/).
+git clone [https://github.com/deilsongilmar-web/](https://github.com/deilsongilmar-web/)
 
 
 
 ## 👨‍💻 Contato
 
-Deilson Gilmar - Desenvolvedor Web & Serviços Elétricos/Energia Solar.
+Deilson Gilmar - Desenvolvedor Web & Serviços Elétricos/Energia Solar
 
 
 * **Meu LinkedIn:** [www.linkedin.com/in/deilson-mendes](www.linkedin.com/in/deilson-mendes)
